@@ -192,7 +192,7 @@ const ProjectDetails = () => {
             "url": "${projectUrl}",
             "author": {
               "@type": "Person",
-              "name": "Eki Zulfar Rachman",
+              "name": "Indira Sistamarien",
               "url": "https://ekizr.com"
             }
           }

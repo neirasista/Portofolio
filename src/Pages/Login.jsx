@@ -13,18 +13,19 @@ export default function Login() {
   const handleLogin = async (e) => {
     e.preventDefault()
     setLoading(true)
-    const { data, error } = await supabase.auth.signInWithPassword({ email, password })
-    if (error) { alert(error.message); setLoading(false); return }
 
-    const { data: profile } = await supabase
-      .from('profiles').select('role').eq('id', data.user.id).single()
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    })
 
-    if (profile?.role !== 'admin') {
-      alert('Access denied')
-      await supabase.auth.signOut()
+    if (error) {
+      alert(error.message)
       setLoading(false)
       return
     }
+
+    // langsung masuk dashboard (NO ROLE CHECK)
     navigate('/dashboard')
   }
 
@@ -47,6 +48,8 @@ export default function Login() {
 
             {/* Form */}
             <form onSubmit={handleLogin} className="space-y-4">
+              
+              {/* EMAIL */}
               <div className="space-y-1.5">
                 <label className="text-xs text-gray-400 uppercase tracking-wider">Email</label>
                 <div className="flex items-center bg-white/8 border border-white/15 rounded-xl overflow-hidden focus-within:border-indigo-500/60 transition-colors">
@@ -62,6 +65,7 @@ export default function Login() {
                 </div>
               </div>
 
+              {/* PASSWORD */}
               <div className="space-y-1.5">
                 <label className="text-xs text-gray-400 uppercase tracking-wider">Password</label>
                 <div className="flex items-center bg-white/8 border border-white/15 rounded-xl overflow-hidden focus-within:border-indigo-500/60 transition-colors">
@@ -88,10 +92,10 @@ export default function Login() {
                 </div>
               </div>
 
+              {/* BUTTON */}
               <button type="submit" disabled={loading} className="relative group/btn w-full mt-1">
                 <div className="absolute -inset-0.5 bg-gradient-to-r from-[#4f52c9] to-[#8644c5] rounded-xl opacity-70 blur group-hover/btn:opacity-100 transition duration-300" />
                 <div className="relative h-11 bg-[#030014] rounded-xl border border-white/10 flex items-center justify-center gap-2 overflow-hidden">
-                  <div className="absolute inset-0 scale-x-0 group-hover/btn:scale-x-100 origin-left transition-transform duration-500 bg-gradient-to-r from-[#4f52c9]/20 to-[#8644c5]/20" />
                   {loading ? (
                     <div className="w-5 h-5 border-2 border-white/20 border-t-white rounded-full animate-spin" />
                   ) : (
@@ -102,6 +106,7 @@ export default function Login() {
                   )}
                 </div>
               </button>
+
             </form>
           </div>
         </div>
