@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <!-- Basic -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <link rel="icon" type="image/png" href="/arien.jpeg" />
-  <!-- preload Google Font -->
+
+  <!-- FONT -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
@@ -14,31 +15,45 @@
     as="style"
     href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
     onload="this.onload=null;this.rel='stylesheet'"
-  >
+  />
 
   <noscript>
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
-    >
+    />
   </noscript>
-  
-  <!-- SEO Utama -->
+
+  <!-- SEO -->
   <title>Indira Sistamarien | Front-End Web Developer | Data Engineer</title>
-  <meta name="description" content="Website resmi Indira Sistamarien, Front-End Web Developer | Data Engineer. Saya berfokus pada penciptaan pengalaman digital yang menarik dan selalu berupaya memberikan solusi terbaik dalam setiap proyek yang saya kerjakan." />
-  <meta name="keywords" content="Indira Sistamarien, Front-End Web Developer | Data Engineer, Indira, Portofolio Indira" />
+
+  <meta name="description" content="Website resmi Indira Sistamarien, Front-End Web Developer & Data Engineer." />
+  <meta name="keywords" content="Indira Sistamarien, Front-End Developer, Data Engineer, Portfolio" />
   <meta name="author" content="Indira Sistamarien" />
 
-  
-  <!-- Konten teks penting untuk SEO -->
+  <!-- OPEN GRAPH (INI YANG PENTING) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://portofolio-zqz2.vercel.app/" />
+  <meta property="og:title" content="Indira Sistamarien | Portfolio" />
+  <meta property="og:description" content="Front-End Web Developer & Data Engineer Portfolio" />
+  <meta property="og:image" content="/arien.jpeg" />
+
+  <!-- TWITTER -->
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- CANONICAL -->
+  <link rel="canonical" href="https://portofolio-zqz2.vercel.app/" />
+</head>
+
+<body>
+
+  <!-- SEO CONTENT (HARUS DI BODY) -->
   <header style="display:none">
     <h1>Indira Sistamarien</h1>
-    <p>
-      Saya berfokus pada penciptaan pengalaman digital yang menarik dan selalu berupaya memberikan solusi terbaik dalam setiap proyek yang saya kerjakan.
-    </p>
+    <p>Front-End Web Developer & Data Engineer</p>
   </header>
 
-  <!-- Root React -->
+  <!-- ROOT REACT -->
   <div id="root"></div>
 
   <script type="module" src="/src/main.jsx"></script>
