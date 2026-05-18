@@ -7,19 +7,35 @@ import {
   ExternalLink,
   Instagram,
   Sparkles,
+  Brain,
+  BarChart3,
+  Code2,
 } from "lucide-react";
 
 /* ================= CONFIG ================= */
 
 const PROFILE = {
-  name: "Indira",
-  site: "https://indira.com",
-  jobTitle: "Frontend Web Developer",
+  name: "Indira Sistamarien",
+  site: "https://indirasistamarienportofolio.vercel.app",
+  jobTitle: "AI Engineer • Data Analyst • Frontend Developer",
 };
 
-const WORDS = ["Frontend Developer", "Tech Enthusiast"];
+const WORDS = [
+  "AI Engineer",
+  "Data Analyst",
+  "Frontend Developer",
+  "Computer Vision Enthusiast",
+];
 
-const TECH_STACK = ["React", "JavaScript", "Node.js", "Tailwind"];
+const TECH_STACK = [
+  "Python",
+  "YOLOv8",
+  "OpenCV",
+  "React.js",
+  "Tailwind CSS",
+  "Power BI",
+  "JavaScript",
+];
 
 const SOCIAL_LINKS = [
   {
@@ -42,63 +58,39 @@ const SOCIAL_LINKS = [
 /* ================= COMPONENTS ================= */
 
 const StatusBadge = memo(() => (
-  <div className="inline-block">
+  <div className="inline-block mt-3">
     <div className="relative group">
-      <div className="absolute -inset-0.5 bg-gradient-to-r from-pink-400 to-fuchsia-500 rounded-full blur opacity-30 group-hover:opacity-50 transition duration-500"></div>
 
-      <div className="relative px-4 py-2 rounded-full bg-white border border-pink-200">
-        <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-fuchsia-500 text-sm font-medium flex items-center">
+      <div className="absolute -inset-0.5 bg-gradient-to-r from-pink-500 to-fuchsia-500 rounded-full blur opacity-30 group-hover:opacity-60 transition duration-500"></div>
+
+      <div className="relative glass px-4 py-2 rounded-full flex items-center">
+
+        <span className="gradient-text text-sm font-medium flex items-center leading-none">
           <Sparkles className="w-4 h-4 mr-2 text-pink-400" />
-          Ready to Build
+          Open for Internship & Collaboration
         </span>
+
       </div>
     </div>
   </div>
 ));
+const FeatureCard = memo(({ icon: Icon, title, desc }) => (
+  <div className="glass rounded-2xl p-6 card-hover h-full">
+    <div className="w-14 h-14 rounded-xl bg-pink-500/10 flex items-center justify-center mb-5">
+      <Icon className="w-7 h-7 text-pink-400" />
+    </div>
 
-const MainTitle = memo(() => (
-  <h1 className="text-5xl md:text-7xl font-bold leading-tight">
-    <span className="bg-gradient-to-r from-pink-500 via-fuchsia-500 to-purple-500 bg-clip-text text-transparent">
-      Frontend
-    </span>
+    <h3 className="text-xl font-semibold text-white mb-3">
+      {title}
+    </h3>
 
-    <br />
-
-    <span className="bg-gradient-to-r from-pink-400 to-fuchsia-500 bg-clip-text text-transparent">
-      Developer
-    </span>
-  </h1>
-));
-
-const TechBadge = memo(({ tech }) => (
-  <div className="px-4 py-2 rounded-full bg-white border border-pink-200 text-sm text-gray-700 shadow-sm hover:shadow-md transition">
-    {tech}
+    <p className="text-slate-400 leading-relaxed text-sm">
+      {desc}
+    </p>
   </div>
 ));
 
-const CTAButton = memo(({ href, text, icon: Icon }) => (
-  <a href={href}>
-    <button className="relative group w-[160px]">
-      <div className="absolute inset-0 bg-gradient-to-r from-pink-400 to-fuchsia-500 blur opacity-30 group-hover:opacity-60 transition duration-300 rounded-lg" />
-
-      <div className="relative h-11 bg-white border border-pink-200 rounded-lg flex items-center justify-center gap-2 text-gray-900 hover:scale-[1.02] transition">
-        <span>{text}</span>
-
-        <Icon className="w-4 h-4 group-hover:translate-x-1 transition" />
-      </div>
-    </button>
-  </a>
-));
-
-const SocialLink = memo(({ icon: Icon, link, label }) => (
-  <a href={link} target="_blank" rel="noopener noreferrer" aria-label={label}>
-    <div className="p-3 rounded-xl bg-white border border-pink-200 hover:shadow-md hover:-translate-y-1 transition duration-300">
-      <Icon className="w-5 h-5 text-pink-500 hover:text-fuchsia-500" />
-    </div>
-  </a>
-));
-
-/* ================= MAIN COMPONENT ================= */
+/* ================= MAIN ================= */
 
 const Home = () => {
   const [text, setText] = useState("");
@@ -106,48 +98,50 @@ const Home = () => {
   const [wordIndex, setWordIndex] = useState(0);
   const [charIndex, setCharIndex] = useState(0);
 
-  // VIDEO DELAY FIX
   const [showVideo, setShowVideo] = useState(false);
+
+  /* ================= VIDEO ================= */
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowVideo(true);
-    }, 500);
+    }, 300);
 
     return () => clearTimeout(timer);
   }, []);
 
   /* ================= TYPEWRITER ================= */
-useEffect(() => {
-  const currentWord = WORDS[wordIndex];
 
-  let timeout;
+  useEffect(() => {
+    const currentWord = WORDS[wordIndex];
 
-  if (isTyping) {
-    if (charIndex < currentWord.length) {
-      timeout = setTimeout(() => {
-        setText(currentWord.slice(0, charIndex + 1));
-        setCharIndex((prev) => prev + 1);
-      }, 90);
+    let timeout;
+
+    if (isTyping) {
+      if (charIndex < currentWord.length) {
+        timeout = setTimeout(() => {
+          setText(currentWord.slice(0, charIndex + 1));
+          setCharIndex((prev) => prev + 1);
+        }, 80);
+      } else {
+        timeout = setTimeout(() => {
+          setIsTyping(false);
+        }, 1400);
+      }
     } else {
-      timeout = setTimeout(() => {
-        setIsTyping(false);
-      }, 1200);
+      if (charIndex > 0) {
+        timeout = setTimeout(() => {
+          setText(currentWord.slice(0, charIndex - 1));
+          setCharIndex((prev) => prev - 1);
+        }, 40);
+      } else {
+        setWordIndex((prev) => (prev + 1) % WORDS.length);
+        setIsTyping(true);
+      }
     }
-  } else {
-    if (charIndex > 0) {
-      timeout = setTimeout(() => {
-        setText(currentWord.slice(0, charIndex - 1));
-        setCharIndex((prev) => prev - 1);
-      }, 50);
-    } else {
-      setWordIndex((prev) => (prev + 1) % WORDS.length);
-      setIsTyping(true);
-    }
-  }
 
-  return () => clearTimeout(timeout);
-}, [charIndex, isTyping, wordIndex]);
+    return () => clearTimeout(timeout);
+  }, [charIndex, isTyping, wordIndex]);
 
   /* ================= RENDER ================= */
 
@@ -160,88 +154,168 @@ useEffect(() => {
 
         <meta
           name="description"
-          content="Portfolio Frontend Developer modern dan interaktif."
+          content="Portfolio of Indira Sistamarien — AI Engineer, Data Analyst, and Frontend Developer specializing in Machine Learning and Computer Vision."
         />
       </Helmet>
 
-      <div className="min-h-screen bg-gradient-to-br from-pink-50 via-pink-100 to-pink-200 px-[5%] text-gray-900 overflow-hidden">
-        <div className="flex flex-col lg:flex-row items-center justify-between min-h-screen gap-12 py-10">
-          
+      <div className="min-h-screen px-[6%] overflow-hidden relative">
+
+        {/* BACKGROUND GLOW */}
+
+        <div className="absolute top-0 left-0 w-72 h-72 bg-pink-500/10 rounded-full blur-3xl animate-blob"></div>
+
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-fuchsia-500/10 rounded-full blur-3xl animate-blob"></div>
+
+        {/* HERO */}
+
+        <div className="flex flex-col lg:flex-row items-center justify-between min-h-screen gap-14 py-10 relative z-10">
+
           {/* LEFT */}
 
-          <div className="space-y-6 w-full lg:w-1/2">
+          <div className="space-y-7 w-full lg:w-1/2">
+
             <StatusBadge />
 
-            <MainTitle />
+            {/* TITLE */}
+
+            <h1 className="text-5xl md:text-7xl font-bold leading-tight">
+
+              <span className="gradient-text">
+                AI & Data
+              </span>
+
+              <br />
+
+              <span className="gradient-text">
+                Developer
+              </span>
+
+            </h1>
 
             {/* TYPEWRITER */}
 
-            <div className="text-xl text-gray-700 font-medium h-[32px]">
+            <div className="text-2xl text-slate-300 font-medium h-[36px]">
               {text}
               <span className="ml-1 animate-pulse">|</span>
             </div>
 
-            {/* DESC */}
+            {/* DESCRIPTION */}
 
-            <p className="text-gray-600 max-w-md leading-relaxed">
-              Creating modern, interactive, and user-friendly web experiences.
+            <p className="text-slate-400 max-w-xl leading-relaxed text-lg">
+              Software Engineering student focused on Artificial Intelligence,
+              Machine Learning, Data Analysis, and Frontend Development.
+              Passionate about building intelligent systems, real-time computer
+              vision applications, and modern interactive web experiences.
             </p>
 
-            {/* TECH */}
+            {/* TECH STACK */}
 
             <div className="flex gap-3 flex-wrap">
               {TECH_STACK.map((tech, index) => (
-                <TechBadge key={index} tech={tech} />
+                <div
+                  key={index}
+                  className="glass px-4 py-2 rounded-full text-sm text-slate-200 card-hover"
+                >
+                  {tech}
+                </div>
               ))}
             </div>
 
-            {/* BUTTON */}
+            {/* BUTTONS */}
 
-            <div className="flex flex-wrap gap-3 pt-2">
-              <CTAButton
-                href="#projects"
-                text="Projects"
-                icon={ExternalLink}
-              />
+            <div className="flex flex-wrap gap-4 pt-2">
 
-              <CTAButton
-                href="#contact"
-                text="Contact"
-                icon={Mail}
-              />
+              <a href="#projects">
+                <button className="btn-primary px-6 h-12 rounded-xl font-medium flex items-center gap-2 glow-pink">
+                  View Projects
+                  <ExternalLink className="w-4 h-4" />
+                </button>
+              </a>
+
+              <a href="#contact">
+                <button className="glass px-6 h-12 rounded-xl font-medium flex items-center gap-2 card-hover">
+                  Contact Me
+                  <Mail className="w-4 h-4" />
+                </button>
+              </a>
+
             </div>
 
             {/* SOCIAL */}
 
-            <div className="flex gap-3 pt-2">
-              {SOCIAL_LINKS.map((social, index) => (
-                <SocialLink key={index} {...social} />
-              ))}
+            <div className="flex gap-4 pt-2">
+
+              {SOCIAL_LINKS.map((social, index) => {
+                const Icon = social.icon;
+
+                return (
+                  <a
+                    key={index}
+                    href={social.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={social.label}
+                  >
+                    <div className="glass p-3 rounded-2xl card-hover">
+                      <Icon className="w-5 h-5 text-pink-300" />
+                    </div>
+                  </a>
+                );
+              })}
+
             </div>
           </div>
 
           {/* RIGHT */}
 
           <div className="w-full lg:w-1/2 flex justify-center">
-            <div className="w-full max-w-md">
-              
+
+            <div className="relative w-full max-w-lg">
+
+              <div className="absolute -top-6 -left-6 w-32 h-32 bg-pink-500/10 rounded-full blur-3xl"></div>
+
+              <div className="absolute -bottom-8 -right-6 w-40 h-40 bg-fuchsia-500/10 rounded-full blur-3xl"></div>
+
               {!showVideo ? (
-                <div className="h-[320px] w-full rounded-2xl bg-pink-200 animate-pulse" />
+                <div className="h-[380px] w-full rounded-3xl glass animate-pulse"></div>
               ) : (
                 <video
                   autoPlay
                   loop
                   muted
                   playsInline
-                  preload="none"
-                  className="w-full rounded-2xl shadow-xl"
+                  preload="auto"
+                  className="relative w-full rounded-3xl border border-white/10 glow-pink"
                 >
                   <source src="/Animation1.mp4" type="video/mp4" />
                 </video>
               )}
-
             </div>
           </div>
+        </div>
+
+        {/* FEATURES */}
+
+        <div className="grid md:grid-cols-3 gap-6 pb-20 relative z-10">
+
+          <FeatureCard
+            icon={Brain}
+            title="Artificial Intelligence"
+            desc="Developing AI-powered systems using Machine Learning, Deep Learning, and Computer Vision technologies."
+          />
+
+          <FeatureCard
+            icon={BarChart3}
+            title="Data Analysis"
+            desc="Analyzing structured datasets through preprocessing, visualization, and predictive modeling techniques."
+          />
+
+          <FeatureCard
+            icon={Code2}
+            title="Frontend Development"
+            desc="Building responsive and modern user interfaces using React.js, Tailwind CSS, and interactive web technologies."
+          />
+
         </div>
       </div>
     </>
@@ -249,3 +323,4 @@ useEffect(() => {
 };
 
 export default memo(Home);
+``
