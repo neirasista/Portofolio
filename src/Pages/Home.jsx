@@ -106,7 +106,16 @@ const Home = () => {
   const [wordIndex, setWordIndex] = useState(0);
   const [charIndex, setCharIndex] = useState(0);
 
-  const [videoLoaded, setVideoLoaded] = useState(false);
+  // VIDEO DELAY FIX
+  const [showVideo, setShowVideo] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowVideo(true);
+    }, 500);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   /* ================= TYPEWRITER ================= */
 
@@ -118,7 +127,7 @@ const Home = () => {
         setText(currentWord.slice(0, charIndex + 1));
         setCharIndex((prev) => prev + 1);
       } else {
-        setTimeout(() => setIsTyping(false), 1500);
+        setTimeout(() => setIsTyping(false), 1200);
       }
     } else {
       if (charIndex > 0) {
@@ -132,7 +141,7 @@ const Home = () => {
   }, [charIndex, isTyping, wordIndex]);
 
   useEffect(() => {
-    const timeout = setTimeout(handleTyping, isTyping ? 100 : 50);
+    const timeout = setTimeout(handleTyping, isTyping ? 90 : 50);
 
     return () => clearTimeout(timeout);
   }, [handleTyping, isTyping]);
@@ -154,6 +163,7 @@ const Home = () => {
 
       <div className="min-h-screen bg-gradient-to-br from-pink-50 via-pink-100 to-pink-200 px-[5%] text-gray-900 overflow-hidden">
         <div className="flex flex-col lg:flex-row items-center justify-between min-h-screen gap-12 py-10">
+          
           {/* LEFT */}
 
           <div className="space-y-6 w-full lg:w-1/2">
@@ -165,7 +175,6 @@ const Home = () => {
 
             <div className="text-xl text-gray-700 font-medium h-[32px]">
               {text}
-
               <span className="ml-1 animate-pulse">|</span>
             </div>
 
@@ -211,28 +220,23 @@ const Home = () => {
           {/* RIGHT */}
 
           <div className="w-full lg:w-1/2 flex justify-center">
-            <div className="w-full max-w-md relative">
-              {/* Skeleton */}
-
-              {!videoLoaded && (
+            <div className="w-full max-w-md">
+              
+              {!showVideo ? (
                 <div className="h-[320px] w-full rounded-2xl bg-pink-200 animate-pulse" />
+              ) : (
+                <video
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  preload="none"
+                  className="w-full rounded-2xl shadow-xl"
+                >
+                  <source src="/Animation1.mp4" type="video/mp4" />
+                </video>
               )}
 
-              {/* VIDEO */}
-
-              <video
-                autoPlay
-                loop
-                muted
-                playsInline
-                preload="metadata"
-                onLoadedData={() => setVideoLoaded(true)}
-                className={`w-full rounded-2xl shadow-xl transition duration-500 ${
-                  videoLoaded ? "opacity-100" : "opacity-0 absolute"
-                }`}
-              >
-                <source src="/Animation1.mp4" type="video/mp4" />
-              </video>
             </div>
           </div>
         </div>
