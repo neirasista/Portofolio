@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, memo } from "react";
+import React, { useState, useEffect, memo } from "react";
 import { Helmet } from "react-helmet-async";
 import {
   Github,
@@ -118,33 +118,36 @@ const Home = () => {
   }, []);
 
   /* ================= TYPEWRITER ================= */
+useEffect(() => {
+  const currentWord = WORDS[wordIndex];
 
-  const handleTyping = useCallback(() => {
-    const currentWord = WORDS[wordIndex];
+  let timeout;
 
-    if (isTyping) {
-      if (charIndex < currentWord.length) {
+  if (isTyping) {
+    if (charIndex < currentWord.length) {
+      timeout = setTimeout(() => {
         setText(currentWord.slice(0, charIndex + 1));
         setCharIndex((prev) => prev + 1);
-      } else {
-        setTimeout(() => setIsTyping(false), 1200);
-      }
+      }, 90);
     } else {
-      if (charIndex > 0) {
+      timeout = setTimeout(() => {
+        setIsTyping(false);
+      }, 1200);
+    }
+  } else {
+    if (charIndex > 0) {
+      timeout = setTimeout(() => {
         setText(currentWord.slice(0, charIndex - 1));
         setCharIndex((prev) => prev - 1);
-      } else {
-        setWordIndex((prev) => (prev + 1) % WORDS.length);
-        setIsTyping(true);
-      }
+      }, 50);
+    } else {
+      setWordIndex((prev) => (prev + 1) % WORDS.length);
+      setIsTyping(true);
     }
-  }, [charIndex, isTyping, wordIndex]);
+  }
 
-  useEffect(() => {
-    const timeout = setTimeout(handleTyping, isTyping ? 90 : 50);
-
-    return () => clearTimeout(timeout);
-  }, [handleTyping, isTyping]);
+  return () => clearTimeout(timeout);
+}, [charIndex, isTyping, wordIndex]);
 
   /* ================= RENDER ================= */
 
