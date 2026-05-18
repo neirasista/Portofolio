@@ -27,7 +27,7 @@ const StatusBadge = memo(() => (
   <div className="inline-block animate-float" data-aos="zoom-in" data-aos-delay="400">
     <div className="relative group">
       <div className="absolute -inset-0.5 bg-gradient-to-r from-pink-400 to-fuchsia-500 rounded-full blur opacity-30 group-hover:opacity-50 transition duration-1000"></div>
-      <div className="relative px-4 py-2 rounded-full bg-white/70 backdrop-blur-xl border border-pink-200">
+      <div className="relative px-4 py-2 rounded-full bg-white/70 md:backdrop-blur-xl backdrop-blur-sm border border-pink-200">
         <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-fuchsia-500 text-sm font-medium flex items-center">
           <Sparkles className="w-4 h-4 mr-2 text-pink-400" />
           Ready to Build
@@ -84,8 +84,12 @@ const Home = () => {
   const [charIndex, setCharIndex] = useState(0);
 
   useEffect(() => {
-    AOS.init({ once: true, offset: 10 });
-  }, []);
+  AOS.init({
+    once: true,
+    offset: 10,
+    disable: window.innerWidth < 768,
+  });
+}, []);
 
   const handleTyping = useCallback(() => {
     if (isTyping) {
@@ -107,7 +111,7 @@ const Home = () => {
   }, [charIndex, isTyping, wordIndex]);
 
   useEffect(() => {
-    const timeout = setTimeout(handleTyping, isTyping ? 100 : 50);
+    const timeout = setTimeout(handleTyping, isTyping ? 140 : 80);
     return () => clearTimeout(timeout);
   }, [handleTyping, isTyping]);
 
@@ -158,12 +162,17 @@ const Home = () => {
           </div>
 
           {/* RIGHT */}
-          <div className="w-full max-w-md">
-            <img
-              src="Animation1.gif"
-              alt="Developer"
-              className="w-full"
-            />
+        <div className="w-full max-w-md">
+            <video
+                autoPlay
+                loop
+                muted
+                playsInline
+                preload="auto"
+                className="w-full rounded-2xl"
+>
+              <source src="/Animation1.mp4" type="video/mp4" />
+            </video>
           </div>
 
         </div>

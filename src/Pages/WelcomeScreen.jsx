@@ -34,8 +34,8 @@ const TypewriterEffect = ({ text }) => {
 // BACKGROUND
 const BackgroundEffect = () => (
   <div className="absolute inset-0 overflow-hidden">
-    <div className="absolute inset-0 bg-gradient-to-r from-indigo-600/20 to-purple-600/20 blur-3xl animate-pulse" />
-    <div className="absolute inset-0 bg-gradient-to-tr from-indigo-600/10 via-transparent to-purple-600/10 blur-2xl" />
+    <div className="absolute inset-0 bg-gradient-to-r from-indigo-600/20 to-purple-600/20 md:blur-3xl blur-xl animate-pulse" />
+    <div className="absolute inset-0 bg-gradient-to-tr from-indigo-600/10 via-transparent to-purple-600/10 md:blur-2xl blur-lg" />
   </div>
 );
 
@@ -53,9 +53,10 @@ const WelcomeScreen = ({ onLoadingComplete }) => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    AOS.init({
+        AOS.init({
       duration: 800,
       once: true,
+      disable: window.innerWidth < 768,
     });
 
     const timer = setTimeout(() => {
@@ -64,7 +65,7 @@ const WelcomeScreen = ({ onLoadingComplete }) => {
       setTimeout(() => {
         onLoadingComplete?.();
       }, 1200);
-    }, 5000); // 🔥 FIX: dari 3400 → 5000ms (biar gak terlalu cepat)
+    }, 2500); // 🔥 FIX: dari 3400 → 5000ms (biar gak terlalu cepat)
 
     return () => clearTimeout(timer);
   }, [onLoadingComplete]);
@@ -76,7 +77,8 @@ const WelcomeScreen = ({ onLoadingComplete }) => {
           className="fixed inset-0 bg-[#030014]"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
+          exit={{ opacity: 0, scale: 0.98 }}
+          transition={{ duration: 0.6 }}
         >
           <BackgroundEffect />
 
