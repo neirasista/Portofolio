@@ -202,7 +202,7 @@ const Home = () => {
             {/* DESCRIPTION */}
 
             <p className="text-slate-400 max-w-xl leading-relaxed text-lg">
-              Software Engineering student focused on Artificial Intelligence,
+              6th-semester Software Engineering student at IPB University with a focused on Artificial Intelligence,
               Machine Learning, Data Analysis, and Frontend Development.
               Passionate about building intelligent systems, real-time computer
               vision applications, and modern interactive web experiences.
