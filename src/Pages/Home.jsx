@@ -38,7 +38,7 @@ const StatusBadge = memo(() => (
 ));
 
 const MainTitle = memo(() => (
-  <h1 className="text-5xl md:text-7xl font-bold" data-aos="fade-up" data-aos-delay="600">
+  <h1 className="text-5xl md:text-7xl font-bold">
     <span className="bg-gradient-to-r from-pink-500 via-fuchsia-500 to-purple-500 bg-clip-text text-transparent">
       Frontend
     </span>
@@ -83,13 +83,16 @@ const Home = () => {
   const [wordIndex, setWordIndex] = useState(0);
   const [charIndex, setCharIndex] = useState(0);
 
-  useEffect(() => {
+// AOS dimatikan sementara untuk test performance
+/*
+useEffect(() => {
   AOS.init({
     once: true,
     offset: 10,
     disable: window.innerWidth < 768,
   });
 }, []);
+*/
 
   const handleTyping = useCallback(() => {
     if (isTyping) {
