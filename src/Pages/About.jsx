@@ -248,11 +248,7 @@ const AboutPage = () => {
               data-aos="fade-right"
               data-aos-duration="1500"
             >
-            6th- semester Software Engineering student specializing in  Front- End Development, Machine Learning,Data Analysis, and Artificial 
-            Intelligence. Experienced in data preprocessing, exploratory data analysis (EDA), data visualization, predictive modeling, and developing 
-            machine learning solutions to extract valuable insights from complex datasets. Proficient in building end-to-end AI systems, real-time 
-            computer vision applications, and modern web- based solutions. Passionate about utilizing data and technology to solve real- world 
-            problems and drive meaningful impact through innovation
+            6th-semester Software Engineering student at IPB University with a strong interest in Front-End Development, Machine Learning, Data Analysis, and Artificial Intelligence. Experienced in data preprocessing, exploratory data analysis (EDA), data visualization, predictive modeling, and developing machine learning solutions to extract actionable insights from complex datasets. Skilled in building end-to-end AI systems, real-time computer vision applications, and modern web-based solutions. Passionate about leveraging data and technology to develop innovative solutions that solve real-world challenges and create meaningful impact.
             </p>
 
             {/* SKILLS HIGHLIGHT */}
