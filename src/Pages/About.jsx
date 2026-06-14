@@ -248,16 +248,11 @@ const AboutPage = () => {
               data-aos="fade-right"
               data-aos-duration="1500"
             >
-              A 6th-semester Software Engineering student at IPB University
-              specializing in Artificial Intelligence, Machine Learning,
-              Computer Vision, Data Analysis, and Frontend Development.
-
-              Experienced in building AI-powered systems, real-time object
-              detection applications using YOLOv8 and OpenCV, and responsive web
-              applications using React.js and Tailwind CSS.
-
-              Passionate about leveraging technology to create intelligent,
-              modern, and impactful digital solutions.
+            6th- semester Software Engineering student specializing in  Front- End Development, Machine Learning,Data Analysis, and Artificial 
+            Intelligence. Experienced in data preprocessing, exploratory data analysis (EDA), data visualization, predictive modeling, and developing 
+            machine learning solutions to extract valuable insights from complex datasets. Proficient in building end-to-end AI systems, real-time 
+            computer vision applications, and modern web- based solutions. Passionate about utilizing data and technology to solve real- world 
+            problems and drive meaningful impact through innovation
             </p>
 
             {/* SKILLS HIGHLIGHT */}

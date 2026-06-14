@@ -17,7 +17,7 @@ import {
 const PROFILE = {
   name: "Indira Sistamarien",
   site: "https://indirasistamarienportofolio.vercel.app",
-  jobTitle: "AI Engineer • Data Analyst • Frontend Developer",
+  jobTitle: "Frontend Developer • Data Analyst •  AI Engineer ",
 };
 
 const WORDS = [
@@ -154,7 +154,7 @@ const Home = () => {
 
         <meta
           name="description"
-          content="Portfolio of Indira Sistamarien — AI Engineer, Data Analyst, and Frontend Developer specializing in Machine Learning and Computer Vision."
+          content="Portfolio of Indira Sistamarien — Frontend Developer, Data Analyst, and AI Engineer specializing in Machine Learning and Computer Vision."
         />
       </Helmet>
 
@@ -181,7 +181,7 @@ const Home = () => {
             <h1 className="text-5xl md:text-7xl font-bold leading-tight">
 
               <span className="gradient-text">
-                AI & Data
+               Frontend Developer | AI & Data Enthusiast
               </span>
 
               <br />
@@ -202,10 +202,7 @@ const Home = () => {
             {/* DESCRIPTION */}
 
             <p className="text-slate-400 max-w-xl leading-relaxed text-lg">
-              6th-semester Software Engineering student at IPB University with a focused on Artificial Intelligence,
-              Machine Learning, Data Analysis, and Frontend Development.
-              Passionate about building intelligent systems, real-time computer
-              vision applications, and modern interactive web experiences.
+              Passionate about developing AI-powered systems and modern web applications that utilize data to generate meaningful insights, improve user experiences, and provide innovative solutions to real-world problems.
             </p>
 
             {/* TECH STACK */}
